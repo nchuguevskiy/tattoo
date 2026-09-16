@@ -162,6 +162,12 @@ a 2 KB preview and a file path. The limit applies to each hook separately and
 cannot be configured (measured on Claude Code 2.1.273). A detailed tattoo is
 often 20–60 KB, so a single hook would deliver only its first 2 KB.
 
+This is not hypothetical. In two real sessions with the pre-release version,
+which used a single hook, all 13 compactions hit the limit (snapshots of
+13,000–62,000 characters). Claude read the full file as its first step after
+only 6 of them; after the others it worked from the 2 KB preview for dozens to
+hundreds of tool calls.
+
 To get around this, tattoo registers eight copies of the hook. Each copy prints
 one part of the tattoo: at most 8,500 characters, cut at line boundaries and
 labelled `part i/N`. Together they deliver up to about 68,000 characters
