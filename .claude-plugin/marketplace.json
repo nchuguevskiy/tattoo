@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "tattoo",
+  "description": "Survive /compact: snapshot the session before compaction, get it back verbatim after.",
+  "owner": {
+    "name": "nchuguevskiy",
+    "url": "https://github.com/nchuguevskiy"
+  },
+  "plugins": [
+    {
+      "name": "tattoo",
+      "description": "Claude forgets on every /compact. Tattoo what matters first.",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}

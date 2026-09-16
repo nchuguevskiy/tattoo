@@ -1,0 +1,70 @@
+{
+  "name": "tattoo",
+  "version": "0.1.0",
+  "description": "Claude forgets on every /compact. Tattoo what matters first: /tattoo snapshots the session to a file, and a SessionStart:compact hook reads it back verbatim after compaction.",
+  "author": {
+    "name": "nchuguevskiy",
+    "url": "https://github.com/nchuguevskiy"
+  },
+  "homepage": "https://github.com/nchuguevskiy/tattoo",
+  "repository": "https://github.com/nchuguevskiy/tattoo",
+  "license": "MIT",
+  "keywords": [
+    "compact",
+    "compaction",
+    "context",
+    "memory",
+    "session",
+    "checkpoint",
+    "hooks"
+  ],
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/restore.sh\" 1 8",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/restore.sh\" 2 8",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/restore.sh\" 3 8",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/restore.sh\" 4 8",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/restore.sh\" 5 8",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/restore.sh\" 6 8",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/restore.sh\" 7 8",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/restore.sh\" 8 8",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

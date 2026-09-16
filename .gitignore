@@ -1,0 +1,3 @@
+.DS_Store
+# launch drafts (Reddit / Stack Overflow posts), not part of the plugin
+launch/
