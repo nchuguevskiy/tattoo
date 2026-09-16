@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;700&display=block");
+
+:root {
+  --paper: #fbfaf5;
+  --paper-edge: #ece8dc;
+  --ink: #1d2a44;
+  --ink-red: #c8323c;
+  --term-bg: #0d1117;
+  --term-fg: #e6edf3;
+  --term-dim: #7d8590;
+  --term-ok: #3fb950;
+  --term-err: #f47067;
+  --term-warn: #d29922;
+  --term-accent: #2dd4bf;
+}
+
+html, body { margin: 0; padding: 0; }
+
+.stack {
+  position: relative;
+  width: 960px;
+  height: 460px;
+}
+
+.polaroid {
+  position: absolute;
+  top: 48px;
+  width: 300px;
+  margin: 0;
+  padding: 16px 16px 0;
+  box-sizing: border-box;
+  height: 372px;
+  background: linear-gradient(160deg, var(--paper) 0%, #f6f3ea 100%);
+  border: 1px solid var(--paper-edge);
+  border-radius: 3px;
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.12),
+    0 12px 28px rgba(0, 0, 0, 0.28);
+}
+.polaroid.left  { left: 34px;  transform: rotate(-8deg); top: 58px; }
+.polaroid.right { left: 624px; transform: rotate(7deg);  top: 52px; }
+.polaroid.front { left: 330px; transform: rotate(-2deg); top: 34px; z-index: 2; }
+
+.tape {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  width: 110px;
+  height: 30px;
+  margin-left: -55px;
+  background: rgba(247, 214, 120, 0.62);
+  transform: rotate(-4deg);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+.polaroid.right .tape { transform: rotate(5deg); }
+.polaroid.front .tape { background: rgba(160, 214, 205, 0.62); transform: rotate(3deg); }
+
+.photo {
+  position: relative;
+  height: 228px;
+  padding: 16px 14px;
+  box-sizing: border-box;
+  background: radial-gradient(120% 90% at 30% 20%, #161b22 0%, var(--term-bg) 70%);
+  color: var(--term-fg);
+  font: 12.5px/1.75 "JetBrains Mono", ui-monospace, monospace;
+  overflow: hidden;
+  white-space: nowrap;
+}
+/* faded instant-film look */
+.photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 214, 150, 0.07), rgba(255, 170, 120, 0.05)),
+    radial-gradient(140% 110% at 50% 50%, transparent 55%, rgba(0, 0, 0, 0.35) 100%);
+  pointer-events: none;
+}
+.line.prompt { color: var(--term-accent); font-weight: 700; }
+.line .ok, .line.ok { color: var(--term-ok); }
+.line.err { color: var(--term-err); font-weight: 700; }
+.line.dim { color: var(--term-dim); }
+.line.hook { color: #c9d1d9; }
+.warn { color: var(--term-warn); font-weight: 700; }
+.bar {
+  display: inline-block;
+  width: 96px;
+  height: 9px;
+  margin: 0 2px;
+  vertical-align: 0;
+  border: 1px solid #3d444d;
+  border-radius: 2px;
+}
+.bar i {
+  display: block;
+  width: 97%;
+  height: 100%;
+  background: linear-gradient(90deg, #2dd4bf, #d29922 70%, #f47067);
+}
+
+figcaption {
+  height: 128px;
+  padding: 8px 4px 0 6px;
+  box-sizing: border-box;
+  color: var(--ink);
+  font: 700 25px/1.12 "Caveat", "Bradley Hand", cursive;
+  transform: rotate(-1deg);
+}
+figcaption u {
+  text-decoration: none;
+  color: var(--ink-red);
+  border-bottom: 2.5px solid var(--ink-red);
+}

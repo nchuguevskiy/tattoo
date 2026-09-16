@@ -1,5 +1,9 @@
 # tattoo
 
+<p align="center">
+  <img src="assets/hero.png" width="820" alt="Три полароида в духе «Мементо»: снимки терминала с рукописными заметками «Postgres. NOT Redis. Don't trust the summary. Read your tattoo.», «never push to main», «FOR UPDATE = dead end».">
+</p>
+
 **Claude теряет память на каждом `/compact`. Набейте главное заранее.**
 
 [English version](README.md)
@@ -27,14 +31,10 @@
 Никакого MCP-сервера, базы данных и демона: один Markdown-файл на сессию и два
 маленьких bash-скрипта.
 
-```text
-   context still whole            compaction                 right after
- ┌─────────────────────┐        ┌─────────────┐        ┌──────────────────────────┐
- │ decisions, forks,   │/tattoo │ tattoo/     │/compact│ summary (lossy)          │
- │ rules, dead ends,   │───────▶│ <session>.md│───────▶│ + tattoo, verbatim       │
- │ open questions      │        └─────────────┘  hook  │   (SessionStart:compact) │
- └─────────────────────┘                               └──────────────────────────┘
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/how-it-works-dark.svg">
+  <img src="assets/how-it-works-light.svg" width="960" alt="Схема: пока контекст цел, /tattoo записывает решения, развилки, правила пользователя, тупики и открытые вопросы в ~/.local/state/tattoo/&lt;session&gt;.md. После /compact, ручного или автоматического, файл возвращается частями 1/5–5/5 через хук SessionStart:compact: 8 копий хука, каждая до 10 тыс. символов, дословно. Сводка сжатия плюс части и есть контекст Claude.">
+</picture>
 
 ## Как выглядит татуировка
 
@@ -247,6 +247,7 @@ shell-скрипт не напишет хорошую сводку разгов�
 tests/test.sh      # офлайн: запасные варианты разбора, разбиение (awk, gawk, mawk), install/uninstall на временном HOME
 tests/e2e.sh       # настоящий Claude Code (haiku): /tattoo, /compact, проверка памяти; тратит несколько центов
 claude plugin validate .
+assets/build.sh    # перерисовать assets/hero.png и assets/social-preview.png (headless Chrome)
 ```
 
 ## Удаление

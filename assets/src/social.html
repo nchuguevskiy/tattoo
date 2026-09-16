@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>tattoo social preview</title>
+<link rel="stylesheet" href="polaroids.css">
+<style>
+  body {
+    width: 1280px;
+    height: 640px;
+    overflow: hidden;
+    background:
+      radial-gradient(60% 80% at 80% 50%, rgba(45, 212, 191, 0.10), transparent 70%),
+      radial-gradient(50% 70% at 10% 90%, rgba(244, 112, 103, 0.08), transparent 70%),
+      #0d1117;
+    color: #e6edf3;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    position: relative;
+  }
+  .copy { position: absolute; left: 80px; top: 92px; width: 520px; }
+  .kicker {
+    color: #2dd4bf;
+    font: 700 18px/1 "JetBrains Mono", ui-monospace, monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  h1 {
+    margin: 18px 0 22px;
+    font: 700 112px/0.95 "JetBrains Mono", ui-monospace, monospace;
+    letter-spacing: -0.04em;
+  }
+  h1 span { color: #f47067; }
+  .tagline { margin: 0; font-size: 34px; line-height: 1.25; font-weight: 600; }
+  .tagline em { font-style: normal; color: #9198a1; font-weight: 500; }
+  .flow {
+    margin-top: 40px;
+    font: 400 22px/1 "JetBrains Mono", ui-monospace, monospace;
+    color: #9198a1;
+  }
+  .flow b { color: #e6edf3; font-weight: 700; }
+  .url {
+    position: absolute;
+    left: 80px;
+    bottom: 48px;
+    color: #7d8590;
+    font: 400 20px/1 "JetBrains Mono", ui-monospace, monospace;
+  }
+  .stack { position: absolute; left: 572px; top: 150px; transform: scale(0.72); transform-origin: top left; }
+</style>
+</head>
+<body>
+  <div class="copy">
+    <div class="kicker">Claude Code plugin</div>
+    <h1>tattoo<span>.</span></h1>
+    <p class="tagline">Claude forgets<br>on every /compact.<br><em>Tattoo what matters first.</em></p>
+    <div class="flow"><b>/tattoo</b> → <b>/compact</b> → remembered</div>
+  </div>
+  <div class="url">github.com/nchuguevskiy/tattoo</div>
+  <div class="stack" id="stack"></div>
+  <script src="stack.js"></script>
+</body>
+</html>

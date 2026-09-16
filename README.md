@@ -1,5 +1,9 @@
 # tattoo
 
+<p align="center">
+  <img src="assets/hero.png" width="820" alt="Three Polaroid-style photos of terminal screens, Memento-style, with handwritten notes: 'Postgres. NOT Redis. Don't trust the summary. Read your tattoo.', 'never push to main', 'FOR UPDATE = dead end'.">
+</p>
+
 **Claude forgets on every `/compact`. Tattoo what matters first.**
 
 [Русская версия](README.ru.md)
@@ -28,14 +32,10 @@ Claude proposes the approach you rejected an hour ago.
 No MCP server, no database, no daemon: one Markdown file per session and two
 small bash scripts.
 
-```text
-   context still whole            compaction                 right after
- ┌─────────────────────┐        ┌─────────────┐        ┌──────────────────────────┐
- │ decisions, forks,   │/tattoo │ tattoo/     │/compact│ summary (lossy)          │
- │ rules, dead ends,   │───────▶│ <session>.md│───────▶│ + tattoo, verbatim       │
- │ open questions      │        └─────────────┘  hook  │   (SessionStart:compact) │
- └─────────────────────┘                               └──────────────────────────┘
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/how-it-works-dark.svg">
+  <img src="assets/how-it-works-light.svg" width="960" alt="Diagram: while the context is still whole, /tattoo writes decisions, forks, user rules, dead ends and open questions to ~/.local/state/tattoo/&lt;session&gt;.md. After /compact, manual or auto, the file comes back as parts 1/5 to 5/5 through the SessionStart:compact hook, 8 hook copies of at most 10k characters each, verbatim. Compaction summary plus the parts make up Claude's context.">
+</picture>
 
 ## What a tattoo looks like
 
@@ -237,6 +237,7 @@ the compaction.
 tests/test.sh      # offline: parsing fallbacks, splitting (awk, gawk, mawk), install/uninstall on a throwaway HOME
 tests/e2e.sh       # real Claude Code (haiku): /tattoo, /compact, recall; spends a few cents
 claude plugin validate .
+assets/build.sh    # re-render assets/hero.png and assets/social-preview.png (headless Chrome)
 ```
 
 ## Uninstall
