@@ -37,6 +37,15 @@ small bash scripts.
   <img src="assets/how-it-works-light.svg" width="960" alt="Diagram: while the context is still whole, /tattoo writes decisions, forks, user rules, dead ends and open questions to ~/.local/state/tattoo/&lt;session&gt;.md. After /compact, manual or auto, the file comes back as parts 1/5 to 5/5 through the SessionStart:compact hook, 8 hook copies of at most 10k characters each, verbatim. Compaction summary plus the parts make up Claude's context.">
 </picture>
 
+## Demo
+
+<p align="center">
+  <img src="assets/demo.gif" width="900" alt="Terminal recording: a resumed Claude Code session runs /tattoo, then /compact, then answers 'Where do we keep idempotency keys, and what did we rule out?' with Postgres, Redis ruled out, and 'Can I push this to main?' with 'No, draft PRs only'.">
+</p>
+
+A real session with the plugin loaded, recorded with [vhs](https://github.com/charmbracelet/vhs)
+(`assets/demo.tape`). The waits for writing the tattoo and for compaction are cut.
+
 ## What a tattoo looks like
 
 ```markdown
@@ -215,6 +224,14 @@ state of *this* session: the fork you are at, the question you are waiting on,
 the dead end from an hour ago. When something is already in `CLAUDE.md` or in
 memory, the tattoo refers to it by path instead of copying it.
 
+**Claude Code already re-reads some files after compaction. Why the hook?**
+Right after `/tattoo` and `/compact` you may see Claude Code re-attach the
+tattoo on its own (`Read …/tattoo/<session>.md`, as in the demo), because it is
+one of the files the session touched last. That is a convenience, not a
+guarantee: it covers recently used files, so an auto-compact an hour after the
+tattoo, after dozens of other files, may leave it out. The hook runs after every
+compaction and returns the whole file, split into parts when needed.
+
 **Why not write it automatically in a `PreCompact` hook?**
 A `PreCompact` hook cannot add context or block compaction, and a shell script
 cannot write a good summary of a conversation it cannot see. A good tattoo
@@ -238,6 +255,7 @@ tests/test.sh      # offline: parsing fallbacks, splitting (awk, gawk, mawk), in
 tests/e2e.sh       # real Claude Code (haiku): /tattoo, /compact, recall; spends a few cents
 claude plugin validate .
 assets/build.sh    # re-render assets/hero.png and assets/social-preview.png (headless Chrome)
+assets/demo-setup.sh && assets/demo-setup.sh --render && assets/demo-setup.sh --cleanup   # re-record assets/demo.gif (vhs, real Claude Code)
 ```
 
 ## Uninstall
